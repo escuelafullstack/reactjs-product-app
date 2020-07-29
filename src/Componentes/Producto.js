@@ -14,7 +14,7 @@ function Producto(props) {
     }
 
     return(
-        <div style={{ backgroundColor: 'black' }}>
+        <div>
             <h1>Producto: {props.nombreProducto}</h1>
             <p>Precio: {moneda.signo}{props.precioProducto} {moneda.nombre}</p>
             <Button color="primary" onClick={cambiarASoles}>Soles</Button>
