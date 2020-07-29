@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Button } from '@material-ui/core'
 
 function Producto(props) {
     
@@ -16,8 +17,8 @@ function Producto(props) {
         <div style={{ backgroundColor: 'black' }}>
             <h1>Producto: {props.nombreProducto}</h1>
             <p>Precio: {moneda.signo}{props.precioProducto} {moneda.nombre}</p>
-            <button onClick={cambiarASoles}>Soles</button>
-            <button onClick={cambiarADolares}>Dolares</button>
+            <Button color="primary" onClick={cambiarASoles}>Soles</Button>
+            <Button color="primary" onClick={cambiarADolares}>Dolares</Button>
         </div>
     )
 }
