@@ -5,6 +5,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import EditarProductoModal from './EditarProductoModal'
 
 const useStyles = makeStyles({
   root: {
@@ -22,14 +23,15 @@ const useStyles = makeStyles({
 });
 
 const ProductCard = (props) => {
-  const { titulo, precio, descripcion } = props
+  const { id, nombre, precio, descripcion } = props.data
+  console.log("Johan: ProductCard -> props.data", props.data)
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
       <CardContent>
         <Typography color="textPrimary" gutterBottom>
-          Producto: {titulo}
+          Producto: {nombre}
         </Typography>
         <Typography color="textPrimary" gutterBottom>
           Descripcion: {descripcion}
@@ -39,7 +41,7 @@ const ProductCard = (props) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Comprar</Button>
+        <EditarProductoModal product={props.data}/>
       </CardActions>
     </Card>
   );

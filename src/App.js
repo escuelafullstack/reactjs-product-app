@@ -13,7 +13,10 @@ const App = () => {
 
   const obtenerProductos = async () => {
     const productosDB = await db.collection('productos').get()
-    const productos = await productosDB.docs.map((producto) => producto.data())
+    const productos = await productosDB.docs.map((producto) => {
+      const { id } = producto
+      return { ...producto.data(), id } 
+    })
     setproducts(productos)
   }
 
@@ -24,7 +27,7 @@ const App = () => {
 
       <div>
         { products.map((product) => {
-          return <ProductoCard titulo={product.nombre} precio={product.precio} descripcion={product.descripcion}/>
+          return <ProductoCard data={product}/>
         })}
       </div>
 
