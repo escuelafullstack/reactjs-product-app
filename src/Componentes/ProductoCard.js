@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 });
 
 const ProductCard = (props) => {
-  const { titulo, precio } = props
+  const { titulo, precio, descripcion } = props
   const classes = useStyles();
 
   return (
@@ -30,6 +30,9 @@ const ProductCard = (props) => {
       <CardContent>
         <Typography color="textPrimary" gutterBottom>
           Producto: {titulo}
+        </Typography>
+        <Typography color="textPrimary" gutterBottom>
+          Descripcion: {descripcion}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
           Precio: {precio}
