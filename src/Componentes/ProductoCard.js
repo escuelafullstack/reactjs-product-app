@@ -6,6 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import EditarProductoModal from './EditarProductoModal'
+import db from '../firebase'
 
 const useStyles = makeStyles({
   root: {
@@ -27,8 +28,12 @@ const ProductCard = (props) => {
   console.log("Johan: ProductCard -> props.data", props.data)
   const classes = useStyles();
 
+  const eliminarProducto = async () => {
+    await db.collection("productos").doc(id).delete()
+  }
+
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} elevation={3}>
       <CardContent>
         <Typography color="textPrimary" gutterBottom>
           Producto: {nombre}
@@ -42,6 +47,7 @@ const ProductCard = (props) => {
       </CardContent>
       <CardActions>
         <EditarProductoModal product={props.data}/>
+        <Button onClick={eliminarProducto}>Eliminar Producto</Button>
       </CardActions>
     </Card>
   );

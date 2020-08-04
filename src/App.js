@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from './Componentes/NavBar'
 import ProductoCard from './Componentes/ProductoCard'
+import AgregarProducto from './Componentes/AgregarProducto'
 import db from './firebase'
+import { Grid, Input, Button, Typography } from '@material-ui/core';
 
 const App = () => {
 
@@ -22,19 +24,15 @@ const App = () => {
 
   return (
     <div>
-      {/* AQUI VA NUESTRO NAVBAR */}
       <NavBar/>
-
-      <div>
-        { products.map((product) => {
-          return <ProductoCard data={product}/>
-        })}
-      </div>
-
-      {/* <ProductoCard titulo="Zapatillas Adidas" precio={150}/>
-      <ProductoCard titulo="Zapatillas Nike" precio={180}/>
-      <ProductoCard titulo="Zapatillas Puma" precio={200}/> */}
-      
+      <Grid container>
+        <AgregarProducto/>
+        <Grid container>
+          { products.map((product) => {
+            return <Grid item style={{ margin: '20px'}}><ProductoCard data={product}/></Grid>
+          })}
+        </Grid>
+      </Grid>
     </div>
   );
 }
