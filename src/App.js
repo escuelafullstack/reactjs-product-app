@@ -5,16 +5,18 @@ import Productos from './Contenedores/Productos';
 import Inicio from './Contenedores/Inicio';
 import Login from './Contenedores/Login';
 import RegistroUsuario from './Contenedores/RegistroUsuario';
+import Routes from './Routes';
 
 const App = () => {
 
   return (
     <div>
       <NavBar/>
+      <Routes/>
       {/* <Productos/> */}
       {/* <Inicio/> */}
       {/* <Login/> */}
-      <RegistroUsuario/>
+      {/* <RegistroUsuario/> */}
     </div>
   );
 }
