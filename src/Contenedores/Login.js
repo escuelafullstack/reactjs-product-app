@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Grid, Input, Button } from '@material-ui/core'
 import { auth } from 'firebase'
 import { useHistory } from 'react-router-dom'
+import UserContext from '../Context/UserContext'
 
 const Login = () => {
 
     const history = useHistory()
+    const { setLogueado } = useContext(UserContext)
 
     const [email, setEmail] = useState("")
     const [password, setPassword] =useState("")
@@ -21,6 +23,7 @@ const Login = () => {
     const login = async () => {
         const { user } = await auth().signInWithEmailAndPassword(email, password)
         localStorage.setItem("user", JSON.stringify(user))
+        setLogueado(user)
         history.push('/productos')
     }
 

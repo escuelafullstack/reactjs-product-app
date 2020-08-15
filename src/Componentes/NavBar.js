@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -6,7 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import { userHistory, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import UserContext from '../Context/UserContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 const NavBar = () => {
   const classes = useStyles();
-
+  const { logueado, setLogueado } = useContext(UserContext)
   const history = useHistory()
 
   const registrar = () => {
@@ -31,6 +32,12 @@ const NavBar = () => {
 
   const login = () => {
     history.push('/login')
+  }
+
+  const cerrarSesion = () => {
+    setLogueado(null)
+    localStorage.removeItem('user')
+    history.push('/')
   }
 
   return (
@@ -43,8 +50,13 @@ const NavBar = () => {
           <Typography variant="h6" className={classes.title}>
             Administrador de Productos
           </Typography>
-          <Button color="inherit" onClick={registrar}>Registrar</Button>
-          <Button color="inherit" onClick={login}>Login</Button>
+          { logueado ?
+            <Button color="inherit" onClick={cerrarSesion}>Cerrar Sesion</Button> :
+            <div>
+              <Button color="inherit" onClick={registrar}>Registrar</Button>
+              <Button color="inherit" onClick={login}>Login</Button>
+            </div>
+          }
         </Toolbar>
       </AppBar>
     </div>

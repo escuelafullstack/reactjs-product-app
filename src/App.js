@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import NavBar from './Componentes/NavBar'
-import db from './firebase'
-import Productos from './Contenedores/Productos';
-import Inicio from './Contenedores/Inicio';
-import Login from './Contenedores/Login';
-import RegistroUsuario from './Contenedores/RegistroUsuario';
 import Routes from './Routes';
+import UserContext from './Context/UserContext'
 
 const App = () => {
 
+  const setLogueado = (logueado) => {
+    setUsuario({ ...usuario, logueado })
+  }
+
+  const [usuario, setUsuario] = useState({ logueado: null, setLogueado})
+
   return (
-    <div>
+    <UserContext.Provider value={{ logueado: usuario.logueado, setLogueado: usuario.setLogueado }}>
       <NavBar/>
       <Routes/>
-      {/* <Productos/> */}
-      {/* <Inicio/> */}
-      {/* <Login/> */}
-      {/* <RegistroUsuario/> */}
-    </div>
+    </UserContext.Provider>
   );
 }
 
